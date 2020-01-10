@@ -1,5 +1,9 @@
+const time = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 const timeSlot = document.querySelector(".timeslot");
 const hours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
+const date = document.querySelector("#date");
+date.replaceWith(moment().format('llll'));
+
 
 for (i = 0; i < hours.length; i++) {
     let div = document.createElement("div");
@@ -7,7 +11,7 @@ for (i = 0; i < hours.length; i++) {
     let input = document.createElement("textarea");
     timeSlot.appendChild(div);
     div.innerText = hours[i];
-    div.setAttribute("class", "hour");
+    div.setAttribute("class", time[i]);
     save.innerText = "Save";
     save.setAttribute("class", "button");
     save.setAttribute("value", hours[i]);
@@ -73,4 +77,21 @@ document.addEventListener('click', function (e) {
     
 })
 
+function colorChange () {
+    for (i = 0; i < buttons.length; i++) {
+        if (time[i] < moment().hour()) {
+            var bla = document.getElementsByClassName(`${time[i]}`);
+            bla[0].style.backgroundColor = "gray";
+            console.log(bla)
+        } else if (time[i] == moment().hour()) {
+            var bla = document.getElementsByClassName(`${time[i]}`);
+            bla[0].style.backgroundColor = "green";
+            console.log(bla)
+        }
+    }
+
+}
+colorChange();
+//if .buttons[i].value < moment().hour(), gray out, can't use
+//if hour = moment hour, green, can use 
 
