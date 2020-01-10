@@ -82,6 +82,8 @@ function colorChange () {
         if (time[i] < moment().hour()) {
             var bla = document.getElementsByClassName(`${time[i]}`);
             bla[0].style.backgroundColor = "gray";
+            text[i].setAttribute("disabled", "true");
+            buttons[i].setAttribute("disabled", "true");
             console.log(bla)
         } else if (time[i] == moment().hour()) {
             var bla = document.getElementsByClassName(`${time[i]}`);
@@ -92,6 +94,4 @@ function colorChange () {
 
 }
 colorChange();
-//if .buttons[i].value < moment().hour(), gray out, can't use
-//if hour = moment hour, green, can use 
-
+/// LAST THING - Gray out items can't be edited
