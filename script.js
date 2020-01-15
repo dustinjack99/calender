@@ -2,7 +2,7 @@ const time = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 const timeSlot = document.querySelector(".timeslot");
 const hours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 const date = document.querySelector("#date");
-date.replaceWith(moment().format('llll'));
+date.textContent = moment().format('llll');
 
 
 for (i = 0; i < hours.length; i++) {
@@ -15,17 +15,18 @@ for (i = 0; i < hours.length; i++) {
     save.innerText = "Save";
     save.setAttribute("class", "button");
     save.setAttribute("value", hours[i]);
-    div.appendChild(input)
+    input.setAttribute("class", "input");
+    div.appendChild(input);
     div.appendChild(save);
     let hour = JSON.parse(localStorage.getItem(hours[i]));
     if (hour === null) hour = [];
     localStorage.setItem(hours[i], JSON.stringify(hour));
     input.innerText = JSON.parse(localStorage.getItem(hours[i]));
-    // let toDo = localStorage.getItem(hours[i]);
-    // console.log(toDo)
+
 }
 ///event listeners on all text areas
 let text = document.querySelectorAll("textarea");
+    
 text[0].addEventListener('input', update0);
 text[1].addEventListener('input', update1);
 text[2].addEventListener('input', update2);
@@ -81,17 +82,17 @@ function colorChange () {
     for (i = 0; i < buttons.length; i++) {
         if (time[i] < moment().hour()) {
             var bla = document.getElementsByClassName(`${time[i]}`);
-            bla[0].style.backgroundColor = "gray";
+            bla[0].style.backgroundColor = "lightgray";
             text[i].setAttribute("disabled", "true");
             buttons[i].setAttribute("disabled", "true");
             console.log(bla)
         } else if (time[i] == moment().hour()) {
             var bla = document.getElementsByClassName(`${time[i]}`);
-            bla[0].style.backgroundColor = "green";
+            bla[0].style.backgroundColor = "lightgreen";
             console.log(bla)
         }
     }
 
 }
+
 colorChange();
-/// LAST THING - Gray out items can't be edited
